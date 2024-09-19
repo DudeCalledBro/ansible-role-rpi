@@ -1,0 +1,21 @@
+argument_specs:
+  main:
+    short_description: rpi
+    description: "Configures a Raspberry Pi."
+    author: dudecalledbro
+    options:
+      rpi_config_reboot:
+        type: bool
+        description: "Reboot Raspberry Pi if boot config changes."
+      rpi_config:
+        type: list
+        elements: dict
+        options:
+          regexp:
+            type: str
+            required: true
+            description: "Desired regexp for the boot config option."
+          line:
+            type: str
+            required: true
+            description: "Desired line of the boot config."

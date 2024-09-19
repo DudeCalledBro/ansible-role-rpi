@@ -1,0 +1,9 @@
+# Reboot Raspberry Pi if boot config changes
+rpi_config_reboot: true
+
+# Configure Raspberry Pi boot configuration
+rpi_config: []
+# - regexp: "^#?dtparam=pciex1$"
+#   line: "dtparam=pciex1"
+# - regexp: "^#?dtparam=pciex1_gen"
+#   line: "dtparam=pciex1_gen=3"

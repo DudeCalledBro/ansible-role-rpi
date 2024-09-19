@@ -1,0 +1,11 @@
+- name: Configure Raspberry Pi
+  ansible.builtin.lineinfile:
+    dest: /boot/firmware/config.txt
+    insertafter: EOF
+    line: "{{ item.line }}"
+    regexp: "{{ item.regexp }}"
+    state: present
+  loop: "{{ rpi_config }}"
+  loop_control:
+    label: "{{ item.line }}"
+  notify: reboot raspberry pi
