@@ -1,4 +1,4 @@
-- name: Reboot Raspberry Pi
+- name: Reboot raspberry pi
   when: rpi_config_reboot | bool
   ansible.builtin.reboot:
     reboot_timeout: 300

@@ -1,6 +1,15 @@
-- name: Configure Raspberry Pi
+- name: Identify raspberry pi hardware version
+  ansible.builtin.slurp:
+    src: /sys/firmware/devicetree/base/model
+  register: rpi_hardware
+
+- name: Define raspberry pi config file path
+  ansible.builtin.set_fact:
+    rpi_boot_config: "{{ '/boot/firmware/config.txt' if 'Raspberry Pi 5' in (rpi_hardware['content'] | b64decode) else '/boot/config.txt' }}"
+
+- name: Configure raspberry pi
   ansible.builtin.lineinfile:
-    dest: /boot/firmware/config.txt
+    dest: "{{ rpi_boot_config }}"
     insertafter: EOF
     line: "{{ item.line }}"
     regexp: "{{ item.regexp }}"
